@@ -1,6 +1,6 @@
 resource "null_resource" "execute_permission" {
   triggers = {
-    always_run = timestamp()
+    run_on_folder = sha1(join("", [for f in fileset("${path.cwd}/src", "*"): filesha1(f)]))
   }
   provisioner "local-exec" {
     command = <<EOT

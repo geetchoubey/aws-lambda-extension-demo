@@ -1,6 +1,5 @@
 terraform {
   backend "s3" {
-
   }
   required_providers {
     aws = {
@@ -39,14 +38,16 @@ module "iam" {
 }
 
 module "function" {
-  source        = "./infra/function"
-  function_name = "test_lambda_function_for_extension"
-  iam_role_arn  = module.iam.iam_role_arn
+  source            = "./infra/function"
+  function_name     = "test_lambda_function_for_extension"
+  iam_role_arn      = module.iam.iam_role_arn
+  dispatch_post_uri = var.dispatch_post_uri
 }
 
 module "function_with_layer" {
-  source         = "./infra/function"
-  function_name  = "test_lambda_function_for_extension_w_layer"
-  layer_arn_list = [module.layer.layer_arn]
-  iam_role_arn   = module.iam.iam_role_arn
+  source            = "./infra/function"
+  function_name     = "test_lambda_function_for_extension_w_layer"
+  layer_arn_list    = [module.layer.layer_arn]
+  iam_role_arn      = module.iam.iam_role_arn
+  dispatch_post_uri = var.dispatch_post_uri
 }

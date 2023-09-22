@@ -10,3 +10,7 @@ variable "function_name" {
 variable "iam_role_arn" {
   type = string
 }
+
+variable "dispatch_post_uri" {
+  type = string
+}

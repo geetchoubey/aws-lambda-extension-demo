@@ -23,8 +23,8 @@ resource "aws_lambda_function" "my_function_test_extension" {
   layers           = var.layer_arn_list
   environment {
     variables = {
-      DISPATCH_POST_URI       = ""
-      DISPATCH_MIN_BATCH_SIZE = 1
+      DISPATCH_POST_URI       = var.dispatch_post_uri
+      DISPATCH_MIN_BATCH_SIZE = 10
     }
   }
 }
